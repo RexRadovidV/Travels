@@ -1,23 +1,15 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
+package pl.seleniumdemo.tests;
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
+public class SignUpTest extends BaseTest {
 
-public class SignUpTest {
     @Test
-    public void  searchHotel() throws InterruptedException {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver=new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        driver.get("http://www.kurs-selenium.pl/demo");
+    public void  SignUpTesty()  {
+
 
         driver.findElements(By.xpath("//li[@id='li_myaccount']"))
                 .stream()
@@ -41,6 +33,7 @@ public class SignUpTest {
 
         Assert.assertTrue(heading.getText().contains(lastName));
         Assert.assertEquals(heading.getText(),"Hi, Wojciech Rachoń");
+
 
     }
 }
