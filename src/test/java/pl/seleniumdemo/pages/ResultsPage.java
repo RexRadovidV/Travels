@@ -9,22 +9,22 @@ import java.util.List;
 
 public class ResultsPage {
     @FindBy(xpath = "//h4[contains(@class,'list_title')]//b")
-    private List<WebElement>hotelList;
+    private List<WebElement> hotelList;
 
     @FindBy(xpath = "//div[@class='itemscontainer']//h2")
     public WebElement resultHeading;
 
-    public ResultsPage(WebDriver driver){
-        PageFactory.initElements(driver,this);
+    public ResultsPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
     }
 
-    public List<String>getHotelNames(){
+    public List<String> getHotelNames() {
         return hotelList.stream()
                 .map(el -> el.getAttribute("textContent"))
                 .toList();
     }
 
-    public String getHeadingText(){
+    public String getHeadingText() {
         return resultHeading.getText();
     }
 

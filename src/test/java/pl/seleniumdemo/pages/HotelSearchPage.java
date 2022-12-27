@@ -13,7 +13,7 @@ public class HotelSearchPage {
     @FindBy(xpath = "//span[text()='Search by Hotel or City Name']")
     private WebElement searchHotelSpan;
 
-    @FindBy(xpath ="//div[@id='select2-drop']//input")
+    @FindBy(xpath = "//div[@id='select2-drop']//input")
     private WebElement searchHotelInput;
 
     @FindBy(name = "checkin")
@@ -22,57 +22,60 @@ public class HotelSearchPage {
     @FindBy(name = "checkout")
     private WebElement checkoutInput;
 
-    @FindBy(id="travellersInput")
+    @FindBy(id = "travellersInput")
     private WebElement travellersInput;
 
-    @FindBy(id="adultPlusBtn")
+    @FindBy(id = "adultPlusBtn")
     private WebElement adultPlusBtn;
 
-    @FindBy(id="childPlusBtn")
+    @FindBy(id = "childPlusBtn")
     private WebElement childPlusBtn;
 
-    @FindBy(xpath ="//button[text()=' Search']")
+    @FindBy(xpath = "//button[text()=' Search']")
     private WebElement searchButton;
 
-    @FindBy(xpath ="//li[@id='li_myaccount']")
-    private List<WebElement>myAccountLink;
+    @FindBy(xpath = "//li[@id='li_myaccount']")
+    private List<WebElement> myAccountLink;
 
-    @FindBy(xpath ="//a[text()='  Sign Up']")
-    private List<WebElement>signUpLink;
+    @FindBy(xpath = "//a[text()='  Sign Up']")
+    private List<WebElement> signUpLink;
     private WebDriver driver;
 
-    public HotelSearchPage(WebDriver driver){
-        PageFactory.initElements(driver,this);
-        this.driver=driver;
+    public HotelSearchPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
-    public void setCity(String cityName){
+    public void setCity(String cityName) {
         searchHotelSpan.click();
         searchHotelInput.sendKeys(cityName);
-        String xpath=String.format("//span[@class='select2-match' and text()='%s']",cityName);
+        String xpath = String.format("//span[@class='select2-match' and text()='%s']", cityName);
         driver.findElement(By.xpath(xpath)).click();
 
     }
-    public void setDates(String checkin, String checkout){
+
+    public void setDates(String checkin, String checkout) {
         checkinInput.sendKeys(checkin);
         checkoutInput.sendKeys(checkout);
     }
-    public void setTravellersInput(int adultsToAdd,int childToAdd){
+
+    public void setTravellersInput(int adultsToAdd, int childToAdd) {
         travellersInput.click();
-        addTraveler(adultPlusBtn,adultsToAdd);
-        addTraveler(childPlusBtn,childToAdd);
+        addTraveler(adultPlusBtn, adultsToAdd);
+        addTraveler(childPlusBtn, childToAdd);
     }
 
-    private void addTraveler(WebElement travelerBtn,int numberOfTravelers){
-        for(int i=0;i<numberOfTravelers;i++){
+    private void addTraveler(WebElement travelerBtn, int numberOfTravelers) {
+        for (int i = 0; i < numberOfTravelers; i++) {
             travelerBtn.click();
         }
     }
 
-    public void performSearch(){
+    public void performSearch() {
         searchButton.click();
     }
-    public void openSignUpForm(){
+
+    public void openSignUpForm() {
         myAccountLink
                 .stream()
                 .filter(WebElement::isDisplayed)

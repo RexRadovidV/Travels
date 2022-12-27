@@ -10,56 +10,63 @@ import java.util.List;
 
 public class SignUpPage {
 
-    @FindBy(name="firstname")
+    @FindBy(name = "firstname")
     private WebElement firstNameInput;
 
-    @FindBy(name="lastname")
+    @FindBy(name = "lastname")
     private WebElement lastNameInput;
 
-    @FindBy(name="phone")
+    @FindBy(name = "phone")
     private WebElement phoneInput;
 
-    @FindBy(name="email")
+    @FindBy(name = "email")
     private WebElement emailInput;
 
-    @FindBy(name="password")
+    @FindBy(name = "password")
     private WebElement passwordInput;
 
-    @FindBy(name="confirmpassword")
+    @FindBy(name = "confirmpassword")
     private WebElement confirmpasswordInput;
 
-    @FindBy(xpath ="//button[text()=' Sign Up']")
+    @FindBy(xpath = "//button[text()=' Sign Up']")
     private WebElement signUpButton;
 
     @FindBy(xpath = "//div[@class='alert alert-danger']//p")
     private List<WebElement> errors;
 
-    public SignUpPage(WebDriver driver){
-        PageFactory.initElements(driver,this);
+    public SignUpPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
     }
-    public void setFirstName(String firstName){
+
+    public void setFirstName(String firstName) {
         firstNameInput.sendKeys(firstName);
     }
-    public void setLastName(String lastName){
+
+    public void setLastName(String lastName) {
         lastNameInput.sendKeys(lastName);
     }
-    public void setPhone(String phone){
+
+    public void setPhone(String phone) {
         phoneInput.sendKeys(phone);
     }
-    public void setEmail(String email){
+
+    public void setEmail(String email) {
         emailInput.sendKeys(email);
     }
-    public void setPassword(String password){
+
+    public void setPassword(String password) {
         passwordInput.sendKeys(password);
     }
-    public void confirmPassword(String password){
+
+    public void confirmPassword(String password) {
         confirmpasswordInput.sendKeys(password);
     }
-    public void clickSignUp(){
+
+    public void clickSignUp() {
         signUpButton.click();
     }
 
-    public List<String>getErrors(){
+    public List<String> getErrors() {
         return errors.stream()
                 .map(WebElement::getText).toList();
     }

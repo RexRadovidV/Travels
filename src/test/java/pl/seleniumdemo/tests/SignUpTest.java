@@ -12,7 +12,7 @@ import java.util.List;
 public class SignUpTest extends BaseTest {
 
     @Test
-    public void  SignUpTest() {
+    public void SignUpTest() {
 
         int randomNumbers = (int) (Math.random() * 1000);
         String email = "tester" + randomNumbers + "@gmail.com";
@@ -35,11 +35,12 @@ public class SignUpTest extends BaseTest {
         Assert.assertTrue(loggedUserPage.getHeadingText().contains("Rachoń"));
         Assert.assertEquals(loggedUserPage.getHeadingText(), "Hi, Wojciech Rachoń");
     }
+
     @Test
     public void signUpEmptyFormTest() {
-        HotelSearchPage hotelSearchPage=new HotelSearchPage(driver);
+        HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
         hotelSearchPage.openSignUpForm();
-        SignUpPage signUpPage =new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
         signUpPage.clickSignUp();
         List<String> errors = signUpPage.getErrors();
 
@@ -50,10 +51,11 @@ public class SignUpTest extends BaseTest {
         softAssert.assertTrue(errors.contains("The Last Name field is required."));
         softAssert.assertAll();
     }
-    @Test
-    public  void signInvalidEmail(){
 
-        HotelSearchPage hotelSearchPage=new HotelSearchPage(driver);
+    @Test
+    public void signInvalidEmail() {
+
+        HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
         hotelSearchPage.openSignUpForm();
 
         SignUpPage signUpPage = new SignUpPage(driver);
