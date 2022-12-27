@@ -3,7 +3,6 @@ package pl.seleniumdemo.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pl.seleniumdemo.model.User;
 import pl.seleniumdemo.pages.HotelSearchPage;
 import pl.seleniumdemo.pages.LoggedUserPage;
 import pl.seleniumdemo.pages.SignUpPage;
@@ -13,30 +12,27 @@ import java.util.List;
 public class SignUpTest extends BaseTest {
 
     @Test
-    public void  SignUpTest2() {
+    public void  SignUpTest() {
 
         int randomNumbers = (int) (Math.random() * 1000);
         String email = "tester" + randomNumbers + "@gmail.com";
-
-        User user=new User();
-        user.setFirstName("Wojciech");
-        user.setLastName("Rachoń");
-        user.setPhone("111111111");
-        user.setEmail(email);
-        user.setPassword("Test123");
-
-
 
         HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
         hotelSearchPage.openSignUpForm();
 
         SignUpPage signUpPage = new SignUpPage(driver);
-        //signUpPage.fillSignUpForm("Wojciech","Rachoń","111111111",email,"Test123");
-        signUpPage.fillSignUpForm(user);
+
+        signUpPage.setFirstName("Wojciech");
+        signUpPage.setLastName("Rachoń");
+        signUpPage.setPhone("111111111");
+        signUpPage.setEmail(email);
+        signUpPage.setPassword("Test123");
+        signUpPage.confirmPassword("Test123");
+        signUpPage.clickSignUp();
 
         LoggedUserPage loggedUserPage = new LoggedUserPage(driver);
 
-        Assert.assertTrue(loggedUserPage.getHeadingText().contains(user.getLastName()));
+        Assert.assertTrue(loggedUserPage.getHeadingText().contains("Rachoń"));
         Assert.assertEquals(loggedUserPage.getHeadingText(), "Hi, Wojciech Rachoń");
     }
     @Test
